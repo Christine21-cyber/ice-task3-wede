@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Haven - Book Information</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f5f0;
+            color: #3e2723;
+            line-height: 1.6;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                              url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23c9ad92' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: #5d4037;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 18px;
+            padding: 10px 15px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            background-color: #d7ccc8;
+            color: #5d4037;
+        }
+        
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(rgba(93, 64, 55, 0.85), rgba(93, 64, 55, 0.85)), url('https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            color: #fff;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+        }
+        
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-family: 'Georgia', serif;
+        }
+        
+        .page-header p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #8d6e63;
+            color: white;
+            padding: 14px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            margin: 10px;
+        }
+        
+        .btn:hover {
+            background-color: #6d4c41;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid #8d6e63;
+            color: #5d4037;
+        }
+        
+        .btn-outline:hover {
+            background-color: #8d6e63;
+            color: white;
+        }
+        
+        /* Book Bios Section */
+        .book-bios {
+            padding: 40px 0;
+        }
+        
+        .section-title {
+            font-size: 36px;
+            color: #5d4037;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+            font-family: 'Georgia', serif;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #8d6e63;
+        }
+        
+        .book-detail {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 60px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .book-image {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+        
+        .book-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .book-info {
+            flex: 2;
+            min-width: 300px;
+            padding: 30px;
+        }
+        
+        .book-info h2 {
+            font-size: 28px;
+            color: #5d4037;
+            margin-bottom: 15px;
+            font-family: 'Georgia', serif;
+        }
+        
+        .book-info .author {
+            font-size: 18px;
+            color: #795548;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .book-info .price {
+            font-size: 24px;
+            color: #5d4037;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .book-info .description {
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+        
+        .book-info .details {
+            margin-bottom: 25px;
+        }
+        
+        .book-info .details div {
+            margin-bottom: 8px;
+            display: flex;
+        }
+        
+        .book-info .details strong {
+            min-width: 120px;
+            display: inline-block;
+            color: #5d4037;
+        }
+        
+        .rating {
+            color: #ffa000;
+            margin-bottom: 20px;
+        }
+        
+        /* Reviews Section */
+        .reviews {
+            margin-top: 40px;
+        }
+        
+        .reviews h3 {
+            font-size: 22px;
+            color: #5d4037;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #d7ccc8;
+        }
+        
+        .review {
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .review .reviewer {
+            font-weight: bold;
+            color: #5d4037;
+            margin-bottom: 10px;
+        }
+        
+        .review .review-content {
+            line-height: 1.6;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #5d4037;
+            color: white;
+            padding: 40px 0;
+            margin-top: 60px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .social-icons {
+            margin: 20px 0;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 24px;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: #d7ccc8;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .page-header h1 {
+                font-size: 36px;
+            }
+            
+            .page-header p {
+                font-size: 18px;
+            }
+            
+            .book-detail {
+                flex-direction: column;
+            }
+            
+            .book-image {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Homepage</a></li>
+            <li><a href="info.html" class="active"><i class="fas fa-info-circle"></i> Info</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+    </nav>
+    
+    <div class="page-header">
+        <div class="container">
+            <h1>Book Details & Information</h1>
+            <p>Learn more about our featured books and find your next great read</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <section class="book-bios">
+            <h2 class="section-title">Book Bios</h2>
+            
+            <!-- Book 1 -->
+            <div class="book-detail">
+                <div class="book-image">
+                    <img src="https://i.pinimg.com/736x/37/e2/2b/37e22bd054a9498116ee93a50ae55826.jpg" alt="Literary Classics">
+                </div>
+                <div class="book-info">
+                   
+                    <p class="author">By Neva Altaj</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(4.7/5)</span>
+                    </div>
+                   
+                    <p class="description">
+                        This curated collection brings together the most influential works of Neva Altaj
+                        From the romanticism of Bianca the Muted Ballerina and Mikhail the Scarred single-dad
+                    </p>
+              
+                    <a href="#" class="btn">Download</a>
+                    
+                    
+                    <div class="reviews">
+                        <h3>Reader Reviews</h3>
+                        <div class="review">
+                            <p class="reviewer">Emily R. ★★★★★</p>
+                            <p class="review-content">"This collection is absolutely stunning. The binding is high quality, the paper feels substantial, and the illustrations are beautiful. It's the centerpiece of my bookshelf now!"</p>
+                        </div>
+                        <div class="review">
+                            <p class="reviewer">Thomas K. ★★★★☆</p>
+                            <p class="review-content">"A wonderful collection for anyone looking to explore classic literature. The introductions provide excellent context without being overwhelming."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 2 -->
+            <div class="book-detail">
+                <div class="book-image">
+                    <img src="https://i.pinimg.com/736x/bb/a7/28/bba7282d7a4a3de16da0d8621df470f8.jpg" alt="Mystery Collection">
+                </div>
+                <div class="book-info">
+                    
+                    <p class="author">By I.A Dice</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(4.9/5)</span>
+                    </div>
+                    
+                    <p class="description">
+                        Dive into the world of Nico Hayes, the most powerful and richest man in town and Sweet innocent Mia a beloved pianoist
+                        
+                    </p>
+                  
+                    <a href="#" class="btn">Download</a>
+                    
+                    
+                    <div class="reviews">
+                        <h3>Reader Reviews</h3>
+                        <div class="review">
+                            <p class="reviewer">Michael T. ★★★★★</p>
+                            <p class="review-content">"As a longtime mystery fan, I can say this collection is exceptional. Having both Holmes and Poirot in one volume is a dream come true. The quality of the book itself is also outstanding."</p>
+                        </div>
+                        <div class="review">
+                            <p class="reviewer">Sophia L. ★★★★★</p>
+                            <p class="review-content">"I've been introducing my teenager to classic mysteries, and this collection has been perfect. The stories are engaging and the book is beautifully put together."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 3 -->
+            <div class="book-detail">
+                <div class="book-image">
+                    <img src="https://i.pinimg.com/1200x/56/d4/49/56d449f0a9e48f010d4ac9708b406d8e.jpg" alt="Science Fiction">
+                </div>
+                <div class="book-info">
+                    
+                    <p class="author">By Kayleigh King</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span>(4.2/5)</span>
+                    </div>
+                    
+                    <p class="description">
+                      A adventurous college student named Indie learns her lesson about giving in too soon
+                    </p>
+                  
+                    <a href="#" class="btn">Add to Cart</a>
+                   
+                    
+                    <div class="reviews">
+                        <h3>Reader Reviews</h3>
+                        <div class="review">
+                            <p class="reviewer">David P. ★★★★☆</p>
+                            <p class="review-content">"It's fascinating to read these early sci-fi works and see how much the authors got right about future technologies. The additional historical context provided in this edition really enhances the experience."</p>
+                        </div>
+                        <div class="review">
+                            <p class="reviewer">Lisa M. ★★★★★</p>
+                            <p class="review-content">"I bought this for my husband who's a sci-fi enthusiast, and he hasn't put it down! The quality of the binding and paper is excellent, and the collection of stories is comprehensive."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <h3>Book Haven</h3>
+                <p>Where every book finds its reader</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-goodreads"></i></a>
+                </div>
+                <p>&copy; 2023 Book Haven. All rights reserved.</p>
+                <a href="index.html" class="btn">Back to Homepage</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

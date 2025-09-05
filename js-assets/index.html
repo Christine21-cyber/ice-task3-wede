@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Keepers - Homepage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f3e9;
+            color: #3e2723;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: #5d4037;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 18px;
+            padding: 10px 15px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            background-color: #d7ccc8;
+            color: #5d4037;
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(rgba(93, 64, 55, 0.8), rgba(93, 64, 55, 0.8)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            color: #fff;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #8d6e63;
+            color: white;
+            padding: 14px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            margin: 10px;
+        }
+        
+        .btn:hover {
+            background-color: #9e3878;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Books Section */
+        .books-section {
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 36px;
+            color: #5d4037;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #8d6e63;
+        }
+        
+        .section-subtitle {
+            font-size: 20px;
+            color: #795548;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .book-gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .book-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 220px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .book-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .book-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .book-info {
+            padding: 15px;
+        }
+        
+        .book-info h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #d745b0;
+        }
+        
+        .book-info p {
+            color: #d454b6;
+            margin-bottom: 15px;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 60px 0;
+            background-color: #efebe9;
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-card i {
+            font-size: 40px;
+            color: #8d6e63;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #5d4037;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #5d4037;
+            color: white;
+            padding: 40px 0;
+            margin-top: 60px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .social-icons {
+            margin: 20px 0;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 24px;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: #d7ccc8;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .book-gallery {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .book-item {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html" class="active"><i class="fas fa-home"></i> Homepage</a></li>
+            <li><a href="info.html"><i class="fas fa-info-circle"></i> Info</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+    </nav>
+    
+    <div class="hero">
+        <div class="container">
+            <h1>Welcome to Book Keepers</h1>
+            <p>Find books with just one search.</p>
+            <a href="info.html" class="btn">Learn More About Us</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <section class="books-section">
+            <h2 class="section-title">Books</h2>
+            <p class="section-subtitle">Get some of your favourite books here to enjoy with your perfect cup of coffee</p>
+            
+            <div class="book-gallery">
+                <div class="book-item">
+                    <img src="https://i.pinimg.com/736x/37/e2/2b/37e22bd054a9498116ee93a50ae55826.jpg" alt="Coffee Recipe Book">
+                    <div class="book-info">
+                        <h3>Author: Neva Altaj</h3>
+                        <p>Tropes:</p>
+                        <ul>
+                            <li>Scarred Hero</li>
+                            <li>Mute Heroine </li>
+                            <li>Obsessed MMC  </li>
+                        <a href="info.html" class="btn">Details</a>
+                    </div>
+                </div>
+                
+                <div class="book-item">
+                    <img src="https://i.pinimg.com/736x/bb/a7/28/bba7282d7a4a3de16da0d8621df470f8.jpg" alt="Coffee History Book">
+                    <div class="book-info">
+                        <h3>Author: I.A Dice</h3>
+                        <p>Tropes</p>
+                         <ul>
+                            <li>Bestfriend's brother</li>
+                            <li>Age-gap </li>
+                            <li>Possesive MMC  </li>
+                        <a href="info.html" class="btn">Details</a>
+                    </div>
+                </div>
+                
+                <div class="book-item">
+                    <img src="https://i.pinimg.com/1200x/56/d4/49/56d449f0a9e48f010d4ac9708b406d8e.jpg" alt="Brewing Techniques Book">
+                    <div class="book-info">
+                        <h3>Author: Kayleigh King</h3>
+                        <p>Tropes:</p>
+                         <ul>
+                            <li>Forbidden</li>
+                            <li>Age-gap </li>
+                            <li>Blackmail </li>
+                        <a href="info.html" class="btn">Details</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+       
+                
+                
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <h3>Book Keepers</h3>
+                <
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+                <p>&copy; 2023 Coffee Goodness. All rights reserved.</p>
+                <a href="info.html" class="btn">Visit Info Page</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
